@@ -1,0 +1,35 @@
+[36mvite v5.4.21 [32mbuilding for production...[36m[39m
+transforming...
+[32mÔ£ô[39m 236 modules transformed.
+x Build failed in 1.96s
+error during build:
+[vite:esbuild-transpile] Transform failed with 2 errors:
+assets/index-!~{001}~.js:60256:18: ERROR: Top-level await is not available in the configured target environment ("chrome87", "edge88", "es2020", "firefox78", "safari14" + 2 overrides)
+assets/index-!~{001}~.js:61376:17: ERROR: Top-level await is not available in the configured target environment ("chrome87", "edge88", "es2020", "firefox78", "safari14" + 2 overrides)
+
+Top-level await is not available in the configured target environment ("chrome87", "edge88", "es2020", "firefox78", "safari14" + 2 overrides)
+60254|  if ( navigator.gpu !== undefined ) {
+60255|  
+60256|  	_staticAdapter = await navigator.gpu.requestAdapter();
+   |                    ^
+60257|  
+60258|  }
+
+Top-level await is not available in the configured target environment ("chrome87", "edge88", "es2020", "firefox78", "safari14" + 2 overrides)
+61374|  if ( navigator.gpu !== undefined ) {
+61375|  
+61376|  	const adapter = await navigator.gpu.requestAdapter();
+   |                   ^
+61377|  
+61378|  	if ( adapter !== null ) {
+
+    at failureErrorWithLog (C:\Users\beatr\Downloads\itsoeh league\node_modules\esbuild\lib\main.js:1472:15)
+    at C:\Users\beatr\Downloads\itsoeh league\node_modules\esbuild\lib\main.js:755:50
+    at responseCallbacks.<computed> (C:\Users\beatr\Downloads\itsoeh league\node_modules\esbuild\lib\main.js:622:9)
+    at handleIncomingPacket (C:\Users\beatr\Downloads\itsoeh league\node_modules\esbuild\lib\main.js:677:12)
+    at Socket.readFromStdout (C:\Users\beatr\Downloads\itsoeh league\node_modules\esbuild\lib\main.js:600:7)
+    at Socket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
