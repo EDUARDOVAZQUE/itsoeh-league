@@ -1,21 +1,18 @@
 import * as THREE from 'three';
 // @ts-ignore
-import WebGPURenderer from 'three/examples/jsm/renderers/webgpu/WebGPURenderer';
-import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { Car, Ball } from './Entities';
 import { Input } from './Input';
 import { checkCircleCollision, resolveElasticCollision } from './Physics';
 // @ts-ignore
-import fondp from './fondp.png';
-// @ts-ignore
-import musicUrl from './music0.mp3';
-// @ts-ignore
-import goalUrl from './goal.mp3';
-// @ts-ignore
-import nitroUrl from './nitro.mp3';
+import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
+
+const fondp = '/fondp.png';
+const musicUrl = '/music0.mp3';
+const goalUrl = '/goal.mp3';
+const nitroUrl = '/nitro.mp3';
 
 export class Game {
-    private renderer: WebGPURenderer | THREE.WebGLRenderer;
+    private renderer: THREE.WebGLRenderer;
     private scene: THREE.Scene;
     private camera: THREE.OrthographicCamera;
     private input: Input;
@@ -340,14 +337,8 @@ export class Game {
         }
 
         // Setup Renderer
-        try {
-            this.renderer = new WebGPURenderer({ antialias: true, alpha: true });
-        } catch (e) {
-            console.warn("WebGPU not supported, falling back to WebGL");
-            this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        }
+        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         this.renderer.setClearColor(0x000000, 0); // Transparent clear color
-
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.shadowMap.enabled = true;
         container.appendChild(this.renderer.domElement);
@@ -361,7 +352,7 @@ export class Game {
         // Environment for Metallic Reflections
         // Environment for Metallic Reflections
         try {
-            const pmremGenerator = new THREE.PMREMGenerator(this.renderer as THREE.WebGLRenderer);
+            const pmremGenerator = new THREE.PMREMGenerator(this.renderer);
             this.scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 0).texture;
             pmremGenerator.dispose();
         } catch (e) {
@@ -399,7 +390,7 @@ export class Game {
         // Ground/Court
         const groundGeo = new THREE.PlaneGeometry(50, 34);
         const textureLoader = new THREE.TextureLoader();
-        const groundTexture = textureLoader.load('./src/game/cancha.jpg');
+        const groundTexture = textureLoader.load('/cancha.jpg'); // Public path
         groundTexture.colorSpace = THREE.SRGBColorSpace;
         const groundMat = new THREE.MeshStandardMaterial({ map: groundTexture });
         const ground = new THREE.Mesh(groundGeo, groundMat);

@@ -78,7 +78,7 @@ export class Car extends Entity {
 
         // Load 3D Model
         const loader = new GLTFLoader();
-        loader.load('./src/game/rc_shvan_-_low_poly_model.glb', (gltf) => {
+        loader.load('/rc_shvan_-_low_poly_model.glb', (gltf) => {
             const model = gltf.scene;
             model.scale.set(6.0, 6.0, 6.0); // 4x original 1.5
             model.position.y = -0.5; // Rel to center at 0.5 -> 0.0
@@ -338,7 +338,7 @@ export class Ball extends Entity {
 
         // Load the OBJ model
         const loader = new OBJLoader();
-        loader.load('./src/game/football_ball_OBJ.obj', (object) => {
+        loader.load('/football_ball_OBJ.obj', (object) => {
             // Find the main mesh
             const meshes: THREE.Mesh[] = [];
             object.traverse((child) => {
